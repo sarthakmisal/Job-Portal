@@ -14,19 +14,21 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+// String username,String password,String fname,String lname,String email,String phone,boolean enabled,String profile,Set<UserRole>roles
 @Entity
 @Table(name = "users")
 public class User {
-    public User(String username, String password, String fname, String lname, String email, String phone,
-            boolean enabled, String profile) {
-        this.username = username;
-        this.password = password;
-        this.fname = fname;
-        this.lname = lname;
-        this.email = email;
-        this.phone = phone;
-        this.enabled = enabled;
-        this.profile = profile;
+    public User() {
+        // User usr, Set<UserRole> roles
+        // this.username = usr.username;
+        // this.password = usr.password;
+        // this.fname = usr.fname;
+        // this.lname = usr.lname;
+        // this.email = usr.email;
+        // this.phone = usr.phone;
+        this.enabled = true;
+        this.profile = "Normal";
+        // this.userRoles = roles;
     }
 
     @Id
@@ -40,9 +42,11 @@ public class User {
     private String phone;
     private boolean enabled = true;
     private String profile;
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     @JsonIgnore
-    private Set<UserRole> userRoles =new HashSet<>();
+    private Set<UserRole> userRoles = new HashSet<>();
+
     public Set<UserRole> getUserRoles() {
         return userRoles;
     }
@@ -67,7 +71,6 @@ public class User {
         this.password = password;
     }
 
-
     public String getFname() {
         return fname;
     }
@@ -84,7 +87,6 @@ public class User {
         this.lname = lname;
     }
 
-
     public String getEmail() {
         return email;
     }
@@ -92,7 +94,6 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
     public String getPhone() {
         return phone;
@@ -102,7 +103,6 @@ public class User {
         this.phone = phone;
     }
 
-
     public boolean isEnabled() {
         return enabled;
     }
@@ -110,7 +110,6 @@ public class User {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
-
 
     public String getProfile() {
         return profile;

@@ -22,26 +22,22 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long roleId;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "role")
-    private Set<UserRole> userRoles=new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "role")
+    private Set<UserRole> userRoles = new HashSet<>();
+    private String roleName;
+
     public Set<UserRole> getUserRoles() {
         return userRoles;
     }
-
     public void setUserRoles(Set<UserRole> userRoles) {
         this.userRoles = userRoles;
     }
-
     public Long getRoleId() {
         return roleId;
     }
-
-    private String roleName;
-
     public String getRoleName() {
         return roleName;
     }
-
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }

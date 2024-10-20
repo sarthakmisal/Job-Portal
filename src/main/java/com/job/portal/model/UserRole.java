@@ -1,4 +1,5 @@
 package com.job.portal.model;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -15,14 +16,26 @@ public class UserRole {
     // USER
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @ManyToOne
     private Role role;
+
     public UserRole() {
         // HEKKO
+        System.out.println("Creating Userrole...");
     }
+
     public Role getRole() {
         return role;
     }
+
     public void setRole(Role role) {
         this.role = role;
     }
