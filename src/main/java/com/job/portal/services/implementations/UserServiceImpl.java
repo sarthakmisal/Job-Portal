@@ -1,6 +1,9 @@
 package com.job.portal.services.implementations;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,33 +24,54 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user, Set<UserRole> roles) {
-        User test = this.repoUser.findByUsername(user.getUsername());
-        if (test != null) {
-            System.out.println("User is already there !!");
-        } else {
+        User savedUser = null; // Declare savedUser outside the try block
+        try {
+            // First, save the user
+            savedUser = this.repoUser.save(user);
+            // Then, assign the saved user to each UserRole and save the roles
             for (UserRole ur : roles) {
-                this.repoRole.save(ur.getRole());
+                ur.setUser(savedUser); // Set the user to the saved user
+                this.repoRole.save(ur.getRole()); // Save the role (if not already saved)
             }
-            user.getUserRoles().addAll(roles);
-            test = this.repoUser.save(user);
+            savedUser.setUserRoles(roles); // Set the roles for the saved user
+            this.repoUser.save(savedUser); // Update the user with roles
+        } catch (Exception e) {
+            System.out.println("Error saving user and roles: " + e.getMessage());
+            e.printStackTrace(); // Print stack trace for debugging
         }
-
-        return test;
+        return savedUser;
     }
 
     @Override
     public List<User> getUsers() {
-        return this.repoUser.findAll();
-    }
+        try {
+            return this.repoUser.findAll();
+            // List<User> ul=new ArrayList<>();
+            // Collection<User> ud=
+            // for(User u:ud){
+            // ul.add(u);
+            // }
+            // return ul;
 
+        } catch (Exception e) {
+            System.out.println("Cannot fetch");
+            // System.out.println(e);
+            // e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+    public User getByUserName(String username){
+        return this.repoUser.findByUsername(username);
+    }
     @Override
     public boolean deleteUser(Long id) {
-        User usr = this.repoUser.findById(id).get();
-        if (usr == null) {
-            this.repoUser.delete(usr);
+        this.repoUser.deleteById(id);
+        // Optional<User> usr = this.repoUser.findById(id);
+        // if (usr.isPresent()) {
+        //     User user=usr.get();
             return true;
-        }
-        return false;
+        // }
+        // return false;
     }
 
     @Override
@@ -63,6 +87,6 @@ public class UserServiceImpl implements UserService {
         usr.setUserRoles(user.getUserRoles());
         usr.setUsername(user.getUsername());
         this.repoUser.save(usr);
-        return user.getFname() + "Updated Successfully";
+        return user.getFname() + " Updated Successfully";
     }
 }

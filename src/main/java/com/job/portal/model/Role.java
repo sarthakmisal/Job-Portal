@@ -15,6 +15,9 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "Role")
 public class Role {
+    public Role() {
+        // This constructor is needed by JPA
+    }
     public Role(String roleName) {
         this.roleName = roleName;
     }

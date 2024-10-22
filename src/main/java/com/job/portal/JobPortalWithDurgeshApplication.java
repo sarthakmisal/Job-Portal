@@ -20,30 +20,4 @@ public class JobPortalWithDurgeshApplication {
 		SpringApplication.run(JobPortalWithDurgeshApplication.class, args);
 		System.out.println("Starting Code...");
 	}
-
-	// @Autowired
-	// private UserService uService;
-	// implements CommandLineRunner
-	// @Override
-	// public void run(String... args) throws Exception {
-	// User tUser = new User();
-	// tUser.setFname("Sarthak");
-	// tUser.setLname("Misal");
-	// tUser.setEmail("sarthak@hotmail.com");
-	// tUser.setPhone("7498605559");
-	// tUser.setProfile("Dev");
-	// tUser.setUsername("sarthakmisal");
-	// tUser.setEnabled(true);
-	// tUser.setPassword("misal");
-
-	// Role tRole = new Role("Software Dev");
-	// Set<UserRole> set = new HashSet<>();
-	// UserRole tUserRole = new UserRole();
-	// tUserRole.setRole(tRole);
-	// tUserRole.setUser(tUser);
-	// set.add(tUserRole);
-
-	// User uu = this.uService.createUser(tUser, set);
-	// System.out.println("just created [" + uu.getUsername() + " ]");
-	// }
 }
