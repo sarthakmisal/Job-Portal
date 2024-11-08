@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user, Set<UserRole> roles) {
-        User savedUser = null; // Declare savedUser outside the try block
+        User savedUser = null;
         try {
             // First, save the user
             savedUser = this.repoUser.save(user);
@@ -60,16 +60,18 @@ public class UserServiceImpl implements UserService {
             return new ArrayList<>();
         }
     }
-    public User getByUserName(String username){
+
+    public User getByUserName(String username) {
         return this.repoUser.findByUsername(username);
     }
+
     @Override
     public boolean deleteUser(Long id) {
         this.repoUser.deleteById(id);
         // Optional<User> usr = this.repoUser.findById(id);
         // if (usr.isPresent()) {
-        //     User user=usr.get();
-            return true;
+        // User user=usr.get();
+        return true;
         // }
         // return false;
     }

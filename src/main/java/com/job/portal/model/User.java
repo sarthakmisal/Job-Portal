@@ -1,5 +1,6 @@
 package com.job.portal.model;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,6 +19,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "users")
 public class User {
+
     public User() {
         // User usr, Set<UserRole> roles
         // this.username = usr.username;
@@ -54,6 +56,10 @@ public class User {
     public void setUserRoles(Set<UserRole> userRoles) {
         this.userRoles = userRoles;
     }
+
+    // public Long getId() {
+    //     return this.id;
+    // }
 
     public String getUsername() {
         return username;
