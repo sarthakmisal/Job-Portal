@@ -21,20 +21,21 @@ public class TokenImplementation implements TokenService {
         List<Token> ls = this.repo.findAll();
         return ls.get(ls.size() - 1).getToken();
     }
-    
+
     @Override
     public User getUser(String username) {
-        User ur=new User();
-        // if(ur.getPassword().equals(pass))   return ur;
-        User us=this.repo.findCustomQuery(username).get(0);
-        ur.setFname(us.getFname());
-        ur.setLname(us.getLname());
-        ur.setEmail(us.getEmail());
-        ur.setUserRoles(us.getUserRoles());
+        User ur = new User();
+        // if(ur.getPassword().equals(pass)) return ur;
+        User us = this.repo.findCustomQuery(username).get(0);
+        // ur.setFname(us.getFname());
+        // ur.setLname(us.getLname());
+        // ur.setEmail(us.getEmail());
+        // ur.setPhone(us.getPhone());
+        // ur.setUserRoles(us.getUserRoles());
         // ur.setUsername(us.getUsername());
-        // us.setPassword("");
+        us.setPassword("");
         // ur.setEnabled("");
-        return ur;
+        return us;
     }
 
     @Override
