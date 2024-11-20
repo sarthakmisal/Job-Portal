@@ -17,5 +17,4 @@ public interface QuestionRepo extends JpaRepository<Question, Long> {
     @Modifying
     @Query("UPDATE Question q SET q.quiz = null WHERE q.q_id = :qid")
     void removeQuiz(Long qid);
-
 }

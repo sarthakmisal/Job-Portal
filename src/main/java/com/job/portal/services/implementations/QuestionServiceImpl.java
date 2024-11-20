@@ -1,6 +1,6 @@
 package com.job.portal.services.implementations;
 
-import org.hibernate.mapping.List;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ public class QuestionServiceImpl implements QuestionService {
     private QuizRepo qzRepo;
 
     @Override
-    public java.util.List<Question> getQuestions() {
+    public List<Question> getQuestions() {
         return this.cRepo.findAll();
     }
     // private static java.util.Map<String, String> map = new java.util.HashMap<>();
@@ -31,7 +31,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public java.util.List<Question> getQuestionsQuiz(Long id) {
+    public List<Question> getQuestionsQuiz(Long id) {
         return this.cRepo.findByQuiz(this.qzRepo.findCustomQuery(id));
     }
 
@@ -41,6 +41,7 @@ public class QuestionServiceImpl implements QuestionService {
         this.cRepo.removeQuiz(qid);
         return "Deleted Successfully!!";
     }
+
 
     @Override
     public String deleteQuestion(Long id) {

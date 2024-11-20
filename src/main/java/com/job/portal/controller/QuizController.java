@@ -1,5 +1,7 @@
 package com.job.portal.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.job.portal.model.Category;
 import com.job.portal.model.Quiz;
 import com.job.portal.services.QuizService;
 
@@ -27,7 +30,13 @@ public class QuizController {
     public java.util.List<Quiz> getCategories() {
         return this.qzService.getQuizs();
     }
-    @GetMapping("getq/{id}")
+    @GetMapping("get/{id}")
+    // public java.util.List<Quiz> getQuizzesByCategory(@PathVariable Long id) {
+    public List<Quiz> getQuizzesByCategory(@PathVariable long id) {
+        return this.qzService.getQuizzesByCategory(id);
+        // return id;
+    }
+    @GetMapping("getq/{id}") // GETQUIZBYID
     public Quiz getQuiz(@PathVariable int id) {
         return this.qzService.getQuiz((long)id);
         // return id+"";

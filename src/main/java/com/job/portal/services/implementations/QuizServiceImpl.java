@@ -1,11 +1,12 @@
 package com.job.portal.services.implementations;
 
 import java.util.List;
-
+import com.job.portal.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.job.portal.model.Quiz;
+import com.job.portal.repo.CategoryRepo;
 import com.job.portal.repo.QuizRepo;
 import com.job.portal.services.QuizService;
 
@@ -13,6 +14,8 @@ import com.job.portal.services.QuizService;
 public class QuizServiceImpl implements QuizService {
     @Autowired
     private QuizRepo qRepo;
+    @Autowired
+    private CategoryRepo cRepo;
 
     @Override
     public String createQuiz(Quiz quiz) {
@@ -29,6 +32,13 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public List<Quiz> getQuizs() {
         return this.qRepo.findAll();
+    }
+    
+
+    @Override
+    public List<Quiz> getQuizzesByCategory(long id) {
+        return this.qRepo.findByCategory(this.cRepo.findByCatid(id));
+        // return ;
     }
 
     @Override

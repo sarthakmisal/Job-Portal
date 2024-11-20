@@ -1,5 +1,6 @@
 package com.job.portal.services;
 
+import java.util.List;
 import com.job.portal.model.Question;
 
 public interface QuestionService {
@@ -7,12 +8,13 @@ public interface QuestionService {
 
     String deleteQuestion(Long id);
 
-    java.util.List<Question> getQuestions();
+    List<Question> getQuestions();
 
-    java.util.List<Question> getQuestionsQuiz(Long id);
+    List<Question> getQuestionsQuiz(Long id);
 
     String updateQuestion(Question que, Long id);
 
     String removeQuiz(Long q_id);
+
 
 }
